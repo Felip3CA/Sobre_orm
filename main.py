@@ -64,14 +64,28 @@ Session = sessionmaker(bind=engine)
 #Sessão atiiva - pense nela como carrinho de compras
 session = Session()  
 
+
+#Criar
+
 #Criar objetos de produtos 
 produto1 = Produto("Notebook", 5500, 6, True)
 produto2 = Produto("Teclado", 500, 100, True)
+produto3 = Produto("Mouse", 150, 55, True)
 
 #Adicionar os produtos na sessão (carrinho)
 session.add(produto1)
 session.add(produto2)
+session.add(produto3)
 
 #Confirmar a inserção no banco
 #Salvar no banco de dados
 session.commit()
+
+#Listar
+#Buscar todos os produtos do banco
+produtos = session.query(Produto).all()
+
+print(produtos)
+
+for p in produtos:
+    print( f"Produto(id={p.id}, nome='{p.nome}', preco={p.preco}, estoque={p.estoque}, ativo={p.ativo})")
