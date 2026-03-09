@@ -58,6 +58,20 @@ engine = create_engine("sqlite:///estoque.db", echo=True)
 #Criar as tabelas no banco de dados, se ainda não existirem
 Base.metadata.create_all(engine)
 
+#Criar um fábrica de sessões, conectadas ao banco
+Session = sessionmaker(bind=engine)
 
+#Sessão atiiva - pense nela como carrinho de compras
+session = Session()  
 
-        
+#Criar objetos de produtos 
+produto1 = Produto("Notebook", 5500, 6, True)
+produto2 = Produto("Teclado", 500, 100, True)
+
+#Adicionar os produtos na sessão (carrinho)
+session.add(produto1)
+session.add(produto2)
+
+#Confirmar a inserção no banco
+#Salvar no banco de dados
+session.commit()
