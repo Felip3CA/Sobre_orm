@@ -116,15 +116,31 @@ for p in produtos:
 #    print(f"Nome:{produto.nome}, Valor: {produto.preco}")
 
 
-#UPDATE - Atualizar
-#Busquei o produo para atualizar
-notebook = session.query(Produto).filter_by(id=1).first
-notebook.preco =  6000
+# #UPDATE - Atualizar
+# #Busquei o produo para atualizar
+# notebook = session.query(Produto).filter_by(id=1).first
+# notebook.preco =  6000
 
-#Confirmar essa alteração
+# #Confirmar essa alteração
+# session.commit()
+
+# print("Preço atualizado com sucesso")
+
+# for p in produtos:
+#    print(  f"Produto(id={p.id}, nome='{p.nome}', preco={p.preco}, estoque={p.estoque}, ativo={p.ativo})")
+
+
+
+# Deletar
+p_remover = session.query(Produto).filter_by(id=2).first()
+
+#Remove produto
+session.delete(p_remover)
+
+#Confirmar remoção
 session.commit()
 
-print("Preço atualizado com sucesso")
+print("Produto removido com sucesso")
 
-for p in produtos:
-   print(  f"Produto(id={p.id}, nome='{p.nome}', preco={p.preco}, estoque={p.estoque}, ativo={p.ativo})")
+session.close()
+    
